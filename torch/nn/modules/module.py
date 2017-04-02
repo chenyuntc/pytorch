@@ -461,3 +461,12 @@ class Module(object):
             tmpstr = tmpstr + '  (' + key + '): ' + modstr + '\n'
         tmpstr = tmpstr + ')'
         return tmpstr
+
+    def __dir__(self):
+        module_attrs = dir(self.__class__)
+        attrs = self.__dict__.keys()
+        parameters = self._parameters.keys()
+        modules = self._modules.keys()
+        buffers = self._buffers.keys()
+        keys = module_attrs + attrs + parameters + modules + buffers
+        return sorted(keys)

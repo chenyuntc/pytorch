@@ -823,6 +823,11 @@ class Variable(_C._VariableBase):
     def __hash__(self):
         return id(self)
 
+    def __dir__(self):
+        attrs = self.__dict__.keys()
+        methods = dir(self.__class__)
+        return attrs + methods + list(self._fallthrough_methods)
+
     class _torch(object):
 
         @staticmethod
